@@ -1,1 +1,76 @@
 /* pages/select/select.wxss */
+.toast-box {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+
+.toastbg {
+  opacity: 0.2;
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.showToast {
+  position: absolute;
+  opacity: 1;
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 40%;
+}
+
+.toast-title {
+  padding-left: 5%;
+  background-color: #1477ba;
+  color: white;
+  text-align: center;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  border-top-right-radius: 16rpx;
+  border-top-left-radius: 16rpx;
+}
+
+.toast-main {
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  background-color: white;
+  text-align: center;
+}
+
+.toast-input {
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 1px solid #ddd;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+.toast-button {
+  display: flex;
+  width: 100%;
+  text-align: center;
+}
+
+.button {
+  width: 50%;
+  height: 30px;
+  background: white;
+}
+
+.button1 {
+  border-bottom-left-radius: 16rpx;
+  color: #e64340;
+}
+
+.button2 {
+  border-bottom-right-radius: 16rpx;
+  color: #1aad19;
+}
+
+

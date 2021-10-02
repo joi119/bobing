@@ -1,66 +1,57 @@
 // pages/select/select.js
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-
+    inputRoomIsShow: false,
+    roomNumber: 0
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
 
   },
-
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 获取输入的房间号 
    */
-  onReady: function () {
+  inputRoomNum(e) {
+    this.setData({
+      roomNumber: e.detail.value
+    })
+  },
+  /**
+   * 取消
+   */
+  cancel() {
+    this.setData({
+      inputRoomIsShow: false,
+    })
+  },
+  /**
+   * 点击确定之后
+   */
+  accept() {
+    this.setData({
+      inputRoomIsShow: false,
+    })
 
   },
-
   /**
-   * 生命周期函数--监听页面显示
+   * 加入房间 -> 输入房间号 -> 成为普通玩家
+   *    判断当前房间是否存在 -> 进入等待页面
    */
-  onShow: function () {
-
+  joinRoom() {
+    this.setData({
+      inputRoomIsShow: true,
+    })
   },
-
   /**
-   * 生命周期函数--监听页面隐藏
+   * 创建房间 -> 成为房主
+   *    获取房间号 -> 进入等待页面
    */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+  createRoom() {
 
   }
 })
