@@ -1,3 +1,12 @@
 <!--pages/index/index.wxml-->
-<button bindtap="goSingleMode">单机模式</button>
-<button bindtap="goMultiMode">联机模式</button>
+<view class="container">
+  <view class="moon-left" bindtap="goSingleMode">
+    <view class="text text-left">单机</view>
+    <view class="text text-left">模式</view>
+  </view>
+  <view class="moon-right" bindtap="goMultiMode">
+    <view class="text text-right">联机</view>
+    <view class="text text-right">模式</view>
+  </view>
+  <image class="bg1" src="../../images/bg1.jpg"></image>
+</view>

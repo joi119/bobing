@@ -8,10 +8,22 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        // wx.cloud.callFunction({
+        //   name: "aboutUser",
+        //   data: {
+        //     request: "getOpenid"
+        //   },
+        //   success: res => {
+        //     console.log(res)
+        //   },
+        //   fail: err => {
+        //     console.log(err)
+        //   }
+        // })
       }
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: wx.getStorageInfoSync('userInfo')
   }
 })

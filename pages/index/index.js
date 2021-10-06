@@ -21,11 +21,42 @@ Page({
     })
   },
   /**
-   * 跳转联机模式 -> 进入选择房间页面
+   * 跳转联机模式 -> 获取用户信息 -> 进入选择房间页面 
    */
   goMultiMode() {
-    wx.navigateTo({
-      url: '/pages/select/select',
+    if (wx.getStorageSync('userInfo').length == 0) {
+      this.getUserProfile().then(res => {
+        // console.log(res.rawData)
+        const app = getApp()
+        app.globalData.userInfo = res.rawData
+        wx.setStorageSync('userInfo', res.rawData)
+        wx.navigateTo({
+          url: '/pages/select/select',
+        })
+      }).catch(err => {
+        console.log(err)
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/select/select',
+      })
+    }
+  },
+  /**
+   * 获取用户数据
+   */
+  getUserProfile(e) {
+    const promise = new Promise((resolve, reject) => {
+      wx.getUserProfile({
+        desc: '获取用户信息',
+        success: (res) => {
+          resolve(res)
+        },
+        fail: err => {
+          reject(err)
+        }
+      })
     })
-  }
+    return promise
+  },
 })
