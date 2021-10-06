@@ -1,6 +1,15 @@
 <!--pages/select/select.wxml-->
-<button bindtap="joinRoom">加入房间</button>
-<button bindtap="createRoom">创建房间</button>
+<view class="container">
+  <view class="moon-left" bindtap="joinRoom">
+    <view class="text text-left">加入</view>
+    <view class="text text-left">房间</view>
+  </view>
+  <view class="moon-right" bindtap="createRoom">
+    <view class="text text-right">创建</view>
+    <view class="text text-right">房间</view>
+  </view>
+  <image src="../../images/bg1.jpg" class="bg1"></image>
+</view>
 
 <block wx:if="{{inputRoomIsShow}}">
   <view class='toast-box'>
@@ -20,6 +29,31 @@
         </view>
         <view class='button2 button'>
           <view catchtap='accept'>确定</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+<block wx:if="{{roomIsShow}}">
+  <view class='toast-box'>
+    <view class='toastbg'></view>
+    <view class='showToast'>
+      <view class='toast-title'>
+        <text>房间号</text>
+      </view>
+      <view class='toast-main'>
+        <view class='toast-input1'>
+          <view class="roomNumber">{{roomNumber}}</view>
+          <image class="copy" src="../../images/copy.png" bindtap="copy"></image>
+        </view>
+      </view>
+      <view class='toast-button'>
+        <view class='button1 button'>
+          <view catchtap='cancelNumber'>取消</view>
+        </view>
+        <view class='button2 button'>
+          <view catchtap='acceptNumber'>确定</view>
         </view>
       </view>
     </view>

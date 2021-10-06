@@ -1,4 +1,55 @@
 /* pages/select/select.wxss */
+.bg1 {
+  width: 100%;
+  height: 100%;
+}
+
+.moon-left {
+  position: absolute;
+  top: 380rpx;
+  left: -70rpx;
+  width: 250rpx;
+  height: 250rpx;
+  border: 2px solid #231e18;
+  border-radius: 50%;
+  background: #ffaf43;
+}
+
+.moon-right {
+  position: absolute;
+  top: 380rpx;
+  right: -70rpx;
+  width: 250rpx;
+  height: 250rpx;
+  border: 2px solid #231e18;
+  border-radius: 50%;
+  background: #ffaf43;
+}
+
+.text {
+  font-size: 50rpx;
+  margin-top: 30rpx;
+}
+
+.text-left {
+  margin-left: 85rpx;
+}
+
+.text-right {
+  margin-left: 60rpx;
+}
+
+
+.roomNumber {
+  display: inline;
+}
+
+.copy {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 10rpx;
+}
+
 .toast-box {
   width: 100%;
   height: 100%;
@@ -45,6 +96,15 @@
   margin-left: 5%;
   margin-right: 5%;
   border: 1px solid #ddd;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+.toast-input1 {
+  margin-left: 5%;
+  margin-right: 5%;
   padding-left: 2vh;
   padding-right: 2vh;
   padding-top: 1vh;
