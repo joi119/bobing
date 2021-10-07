@@ -22,10 +22,64 @@
   /* background: #feefaa; */
 }
 
-.tuAndYue image{
-  width: 470rpx;
-  height: 450rpx;
-  z-index: 10;
+.tuAndYue .rongqi {
+  width: 480rpx;
+  height: 480rpx;
+  z-index: 0;
+}
+
+.tou1 {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 240rpx;
+  left: 270rpx;
+  z-index: 0;
+}
+
+.tou2 {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 160rpx;
+  left: 300rpx;
+  z-index: 0;
+}
+
+.tou3 {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 320rpx;
+  left: 250rpx;
+  z-index: 0;
+}
+
+.tou4 {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 150rpx;
+  left: 420rpx;
+  z-index: 0;
+}
+
+.tou5 {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 270rpx;
+  left: 370rpx;
+  z-index: 0;
+}
+
+.tou6 {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 350rpx;
+  left: 420rpx;
+  z-index: 0;
 }
 
 .roll {
@@ -33,9 +87,21 @@
   justify-content: center;
 }
 
-.roll button {
+.roll .roll-button {
   background: #fbdf7b !important;
   color: #2b2b2b;
+}
+
+.player-button {
+  background: #fbdf7be1 !important;
+  color: #2b2b2bf5;
+  margin-top: 10rpx;
+}
+
+.award-button {
+  background: #fbdf7be1 !important;
+  color: #2b2b2bf5;
+  margin-top: 10rpx;
 }
 
 .award_history {
@@ -46,7 +112,7 @@
 
 .award {
   width: 660rpx;
-  height: 510rpx;
+  height: 470rpx;
   background: #105f94;
   opacity: 0.8;
   border-radius: 16rpx;
@@ -55,14 +121,14 @@
 
 .history {
   text-align: center;
-  font-size: 30rpx;
+  font-size: 28rpx;
   font-weight: 600;
   color: #fff;
   height: 55rpx;
 }
 
 .award_scroll {
-  height: 455rpx;
+  height: 442rpx;
 }
 
 .history_text {
@@ -78,9 +144,85 @@
 }
 
 .text2 {
-  width: 40%;
+  width: 30%;
 }
 
 .text3 {
-  width: 30%;
+  width: 40%;
+}
+
+.text4 {
+  width: 20%;
+}
+
+.text5 {
+  width: 20%;
+}
+
+.text6 {
+  width: 20%;
+}
+
+.text7 {
+  width: 40%;
+}
+
+.toast-box {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.scroll-view-parant {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.scroll-view {
+  height: 50%;
+  width: 100%;
+  margin-bottom: 30rpx;
+  color: #fff;
+  text-align: center;
+}
+
+.avatar {
+  display: inline;
+}
+
+.avatar-item {
+  height: 110rpx;
+  width: 110rpx;
+  border-radius: 50%;
+  margin: 18rpx;
+  /* display: inline; */
+}
+
+.toastbg {
+  opacity: 0.7;
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.hide {
+  z-index: 99;
+  background: #1477ba !important;
+  color: #fff;
+}
+
+.name {
+  font-size: 40rpx;
+  margin-bottom: 20rpx;
+  font-weight: 700;
+}
+
+.name-content {
+  margin-bottom: 10rpx;
 }

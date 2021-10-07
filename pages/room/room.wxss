@@ -23,15 +23,21 @@
 }
 
 .avatar {
-  height: 30%;
-  border: 1px solid red;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  flex-wrap: wrap;
   margin-bottom: 100rpx;
   padding: 0 70rpx;
+}
+ 
+.avatar-item {
+  height: 110rpx;
+  width: 110rpx;
+  border-radius: 50%;
+  margin: 18rpx;
 }
 
 .button {

@@ -15,7 +15,8 @@ exports.main = async (event, context) => {
     const res = await db.collection('room').add({
       data: {
         master: wxContext.OPENID,
-        roomNumber: roomNumber
+        roomNumber: roomNumber,
+        status: 0 // 未开局：0 已开局：1
       }
     })
     if (res.errMsg == "collection.add:ok") {
@@ -29,6 +30,16 @@ exports.main = async (event, context) => {
         msg: "创建失败"
       }
     }
+  }
+  // 修改房间状态
+  else if(event.request == "updateRoomStatus") {
+    console.log(event.status)
+    const res = await db.collection('room').doc(event.roomId).update({
+      data: {
+        status: event.status
+      }
+    })
+    console.log(res)
   }
   // 往指定房间里加入新玩家
   else if (event.request == "addMember") {
@@ -81,11 +92,36 @@ exports.main = async (event, context) => {
       }
     }
   }
-  // 根据 roomId 查询房间，返回所有用户信息
-  else if(event.request == "selectRoomByRoomId") {
+  // 根据 roomId 查询房间，返回所有房间信息
+  else if (event.request == "selectRoomByRoomId") {
     const res = await db.collection('room').doc(event.roomId).get()
+    console.log(res)
     return {
       roomDetail: res.data
     }
+  }
+  // 根据 roomId 更新获奖历史记录
+  else if (event.request == "updateHistory") {
+    let res = await db.collection('room').doc(event.roomId).get()
+    res = res.data.history
+    // console.log(res)
+    let _res = null
+    if (res == undefined) {
+      let history = []
+      history.push(event.history)
+      _res = await db.collection('room').doc(event.roomId).update({
+        data: {
+          history: history
+        }
+      })
+    } else {
+      res.push(event.history)
+      _res = await db.collection('room').doc(event.roomId).update({
+        data: {
+          history: res
+        }
+      })
+    }
+    // console.log(_res)
   }
 }

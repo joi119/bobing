@@ -2,19 +2,33 @@
 <view class="container">
   <view class="content">
     <view class="tuAndYue">
-      <image src="../../images/tuAndYue.png"></image>
+      <image src="../../images/tuAndYue.png" wx:if="{{!yue}}" class="rongqi"></image>
+      <view wx:else>
+        <view wx:for="{{numberStr}}" wx:key="index">
+          <image src="../../images/{{item}}.jpg" class="tou{{index+1}}"></image>
+        </view>
+        <image src="../../images/yue.png" class="rongqi"></image>
+      </view>
     </view>
     <view class="roll">
-      <button size="mini" bindtap="roll">摇骰子</button>
+      <button wx:if="{{identity != 0}}" size="mini" class="player-button" bindtap="showPlayerList">成员列表</button>
+      <button size="mini" bindtap="roll" class="roll-button">摇骰子</button>
+      <button wx:if="{{identity != 0}}" size="mini" class="award-button" bindtap="showAwardList">奖品列表</button>
     </view>
     <view class="award_history">
       <view class="award">
         <view class="history">历史记录</view>
         <scroll-view class="award_scroll" scroll-y scroll-into-view="{{toView}}">
-          <view wx:for="{{history}}" wx:key="index" id='msg-{{index}}' class="history_text">
-            <view class="text1">{{item.time}}</view>  
-            <view class="text2">摇中了</view>  
+          <view wx:if="{{identity == 0}}" wx:for="{{history}}" wx:key="index" id='msg-{{index}}' class="history_text">
+            <view class="text1">{{item.time}}</view>
+            <view class="text2">摇中了</view>
             <view class="text3">{{item.result}}</view>
+          </view>
+          <view wx:if="{{identity != 0}}" wx:for="{{history}}" wx:key="index" id='msg-{{index}}' class="history_text">
+            <view class="text4">{{item.nickName}}</view>
+            <view class="text5">{{item.time}}</view>
+            <view class="text6">摇中了</view>
+            <view class="text7">{{item.result}}</view>
           </view>
         </scroll-view>
       </view>
@@ -22,3 +36,35 @@
   </view>
   <image src="../../images/bg2.jpg" class="bg2"></image>
 </view>
+
+<block wx:if="{{showPlayerList}}">
+  <view class='toast-box'>
+    <view class='toastbg'></view>
+    <view class="scroll-view-parant">
+      <scroll-view scroll-y class="scroll-view">
+        <view wx:for="{{playerList}}" wx:key="index" class="avatar">
+          <image class="avatar-item" src="{{item.avatarUrl}}"></image>
+        </view>
+      </scroll-view>
+      <button class="hide" bindtap="hidePlayerList" size="mini">退出</button>
+    </view>
+  </view>
+</block>
+
+<block wx:if="{{showAwardList}}">
+  <view class='toast-box'>
+    <view class='toastbg'></view>
+    <view class="scroll-view-parant">
+      <scroll-view scroll-y class="scroll-view">
+        <view wx:for="{{awardList}}" wx:key="index">
+          <view class="name">{{item.name}}</view>
+          <view wx:for="{{item.content}}" wx:key="index" wx:for-item="value" class="name-content">
+            <text>{{value.name}}</text>
+            <text>{{value.number}}</text>
+          </view>
+        </view>
+      </scroll-view>
+      <button class="hide" bindtap="hideAwardList" size="mini">退出</button>
+    </view>
+  </view>
+</block>
