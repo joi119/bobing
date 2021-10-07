@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/select/select",
-    "pages/room/room",
     "pages/index/index",
-    "pages/roll/roll"
+    "pages/roll/roll",
+    "pages/select/select",
+    "pages/room/room"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,2 +1,14 @@
 <!--pages/room/room.wxml-->
-
+<view class="container">
+  <view class="content">
+    <view class="roomNumber">{{roomNumber}}</view>
+    <view class="avatar">
+      <view>2</view>
+    </view>
+    <view class="button">
+      <button>导入奖品</button>
+      <button>开始博饼</button>
+    </view>
+  </view>
+  <image src="../../images/bg2.jpg" class="bg2"></image>
+</view>

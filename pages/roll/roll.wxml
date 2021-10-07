@@ -1,2 +1,24 @@
 <!--pages/roll/roll.wxml-->
-<text>pages/roll/roll.wxml</text>
+<view class="container">
+  <view class="content">
+    <view class="tuAndYue">
+      <image src="../../images/tuAndYue.png"></image>
+    </view>
+    <view class="roll">
+      <button size="mini" bindtap="roll">摇骰子</button>
+    </view>
+    <view class="award_history">
+      <view class="award">
+        <view class="history">历史记录</view>
+        <scroll-view class="award_scroll" scroll-y scroll-into-view="{{toView}}">
+          <view wx:for="{{history}}" wx:key="index" id='msg-{{index}}' class="history_text">
+            <view class="text1">{{item.time}}</view>  
+            <view class="text2">摇中了</view>  
+            <view class="text3">{{item.result}}</view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <image src="../../images/bg2.jpg" class="bg2"></image>
+</view>

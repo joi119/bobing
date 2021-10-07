@@ -17,7 +17,7 @@ Page({
    */
   goSingleMode() {
     wx.navigateTo({
-      url: '/pages/room/room?mode=' + 'single',
+      url: '/pages/roll/roll?mode=' + 'single',
     })
   },
   /**

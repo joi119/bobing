@@ -1,11 +1,16 @@
 // pages/roll/roll.js
+const getRewardResult = require("../../utils/util").getRewardResult
+const formatTime = require("../../utils/util").formatTime
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-
+    numberStr: '',
+    result: [],
+    nowResult: {},
+    history: [],
+    toView: ''
   },
 
   /**
@@ -14,53 +19,82 @@ Page({
   onLoad: function (options) {
 
   },
-
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 摇骰子
    */
-  onReady: function () {
-
+  roll() {
+    this.getRandomNumber()
+    this.getRewardResult()
+    const time = formatTime(new Date())
+    let obj = {}
+    if (this.data.nowResult.class == null) {
+      wx.showToast({
+        title: '运气不好，再试一次吧',
+        icon: "none",
+        duration: 1000
+      })
+      obj = {
+        time: time,
+        result: "nothing"
+      }
+    } else {
+      if (this.data.nowResult.class == "状元") {
+        wx.showToast({
+          title: '恭喜你摇中 状元' + this.data.nowResult.name,
+          icon: "none",
+          duration: 500
+        })
+        obj = {
+          time: time,
+          result: "状元" + this.data.nowResult.name
+        }
+      } else {
+        wx.showToast({
+          title: '恭喜你摇中' + this.data.nowResult.name,
+          icon: "none",
+          duration: 500
+        })
+        obj = {
+          time: time,
+          result: this.data.nowResult.name
+        }
+      }
+    }
+    let history = this.data.history
+    history.push(obj)
+    this.setData({
+      history: history
+    })
+    setTimeout(() => {
+      this.setData({
+        toView: "msg-" + (history.length - 1),
+      })
+    }, 100)
   },
-
   /**
-   * 生命周期函数--监听页面显示
+   * 生成长度为6的数字串（1~6）
    */
-  onShow: function () {
-
+  getRandomNumber() {
+    let num = ''
+    for (let i = 0; i < 6; i++) {
+      num += Math.floor(Math.random() * 6 + 1)
+    }
+    this.setData({
+      numberStr: num
+    })
+    this.getRewardResult()
+    // console.log(num)
   },
-
   /**
-   * 生命周期函数--监听页面隐藏
+   * 根据生成的数字串对应获得的奖项
    */
-  onHide: function () {
-
+  getRewardResult() {
+    let res = getRewardResult(this.data.numberStr)
+    let _res = this.data.result
+    _res.push(res)
+    this.setData({
+      result: _res,
+      nowResult: res
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

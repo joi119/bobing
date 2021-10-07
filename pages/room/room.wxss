@@ -1,1 +1,48 @@
 /* pages/room/room.wxss */
+.bg2 {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.roomNumber {
+  text-align: center;
+  margin-bottom: 80rpx;
+  margin-top: 170rpx;
+  color: #feefaa;
+  font-size: 46rpx;
+  font-weight: 700;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.avatar {
+  height: 30%;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-bottom: 100rpx;
+  padding: 0 70rpx;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  padding: 0 50rpx;
+}
+
+.button button {
+  width: 240rpx !important;
+  background: #feefaa !important;
+  color: #464545;
+}
+
