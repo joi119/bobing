@@ -79,7 +79,7 @@ const getRewardResult = numberStr => {
       class: "进士",
       name: "四进"
     }
-  if (len4 == 4)
+  if (len4 == 2)
     return result = {
       class: "举人",
       name: "二举"

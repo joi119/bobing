@@ -63,6 +63,9 @@ Page({
 
     this.onAccelerometer()
   },
+  onUnload: function () {
+    wx.offAccelerometerChange()
+  },
   /**
    * 根据 roomId 获取所有房间信息
    */
