@@ -8,9 +8,12 @@
       </view>
     </view>
     <view class="button">
-      <button bindtap="chooseExcel" wx:if="{{identity == 2}}">导入奖品</button>
-      <button bindtap="leaveRoom" wx:if="{{identity == 1}}">离开房间</button>
-      <button bindtap="toRoll" wx:if="{{identity == 2}}">开始博饼</button>
+      <button bindtap="chooseExcel" wx:if="{{identity == 2}}" class="btn">导入奖品</button>
+      <button bindtap="leaveRoom" wx:if="{{identity == 1}}" class="btn">离开房间</button>
+      <button bindtap="toRoll" wx:if="{{identity == 2}}" class="btn">开始博饼</button>
+    </view>
+    <view class="button">
+      <button bindtap="downloadExcel" wx:if="{{identity == 2}}" class="download">下载奖品模板</button>
     </view>
   </view>
   <image src="../../images/bg2.jpg" class="bg2"></image>

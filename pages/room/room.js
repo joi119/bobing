@@ -272,15 +272,32 @@ Page({
       })
     } 
     wx.removeStorageSync('openid')
-    // wx.enableAlertBeforeUnload({
-    //   message: msg,
-    //   success: res => {
-    //     console.log(res)
-
-    //   },
-    //   fail: res => {
-    //     console.log(res)
-    //   }
-    // })
+  },
+  // 提供文件模板
+  downloadExcel() {
+    wx.showLoading({
+      title: '文件下载中...',
+    })
+    wx.cloud.downloadFile({
+      fileID: 'cloud://cloud1-6gcr9vzj5471eb00.636c-cloud1-6gcr9vzj5471eb00-1307696975/奖品名单.xlsx', // 文件 ID
+      success: res => {
+        // 返回临时文件路径
+        console.log(res.tempFilePath)
+        wx.hideLoading()
+        wx.saveFile({
+          tempFilePath: res.tempFilePath,
+          success: res => {
+            wx.openDocument({
+              filePath: res.savedFilePath,
+              success: res => {
+                console.log(res)
+              }
+            })
+          }
+        })
+      },
+      fail: console.error
+    })
   }
+  
 })

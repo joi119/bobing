@@ -46,8 +46,15 @@
   padding: 0 50rpx;
 }
 
-.button button {
+.button .btn {
   width: 240rpx !important;
+  background: #feefaa !important;
+  color: #464545;
+}
+
+.button .download {
+  margin-top: 25rpx;
+  width: 300rpx !important;
   background: #feefaa !important;
   color: #464545;
 }
