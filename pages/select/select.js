@@ -32,8 +32,14 @@ Page({
     })
   },
   cancelNumber() {
+    console.log("cancleNumber!!")
     this.setData({
       roomIsShow: false
+    })
+    wx.cloud.callFunction({
+      name: "aboutRoom",
+      request: "deleteRoom",
+      roomId: this.data.roomId
     })
   },
   /**
@@ -162,6 +168,7 @@ Page({
    * 把玩家信息加入集合 room 的 member 字段中
    */
   addMember(roomId, identity) {
+    console.log(identity)
     const promise = new Promise((resolve, reject) => {
       wx.cloud.callFunction({
         name: 'aboutRoom',

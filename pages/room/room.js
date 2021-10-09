@@ -1,6 +1,8 @@
+
 // pages/room/room.js
 const db = wx.cloud.database()
 let flag = 0
+let time = 0
 Page({
 
   /**
@@ -12,7 +14,7 @@ Page({
     roomId: null,
     userInfo: [],
     master: '',
-    avatarArray: []
+    avatarArray: [],
   },
 
   /**
@@ -26,22 +28,26 @@ Page({
     })
     this.getIdentity(options)
     this.getAllUser()
+    this.getUserOpenid()
     db.collection('room').doc(this.data.roomId).watch({
       onChange: snapshot => {
+        console.log("watchrunnig!")
         //监控数据发生变化时触发
         // console.log('docs\'s changed events', snapshot.docChanges)
         // console.log('query result snapshot after the event', snapshot.docs)
         // console.log('init data', snapshot.docChanges[0].dataType)
         // console.log("--------------------------------------------")
         let array = []
+        console.log(snapshot)
+        console.log(snapshot.docs[0])
         for (let i = 0; i < snapshot.docs[0].userInfo.length; i++) {
           array.push(JSON.parse(snapshot.docs[0].userInfo[i]).avatarUrl)
         }
         this.setData({
           avatarArray: array
         })
-        // console.log(snapshot.docs[0].status == 1)
-        if(snapshot.docs[0].status == 1 && !flag) {
+        //console.log(snapshot.docs[0].status == 1)
+        if (snapshot.docs[0].status == 1 && !flag && this.data.identity == 1) {
           flag = 1
           wx.navigateTo({
             url: '../roll/roll?identity=' + this.data.identity + '&roomId=' + this.data.roomId
@@ -52,6 +58,10 @@ Page({
         console.error('the watch closed because of error', err)
       }
     })
+
+  },
+  onUnload: function () {
+    this.listenBack()
   },
   /**
    * 获取当前页面用户身份，根据身份不同显示不同内容
@@ -188,6 +198,89 @@ Page({
         console.log(err)
       }
     })
-  }
+  },
+  /**
+   * 普通用户加入房间后离开房间
+   */
+  leaveRoom() {
+    wx.cloud.callFunction({
+      name: 'aboutRoom',
+      data: {
+        request: 'leaveRoom',
+        roomId: this.data.roomId,
+        userInfo: wx.getStorageSync('userInfo')
+      }
+    })
+    wx.navigateTo({
+      url: '../index/index'
+    })
+  },
+  /**
+   *  获取用户的 openid
+   *
+   */
+  getUserOpenid() {
+    wx.cloud.callFunction({
+      name: "aboutUser",
+      data: {
+        request: "getOpenid"
+      }
+    }).then(res => {
+      wx.setStorageSync('openid', res.result.openid)
+    })
+  },
+  /**
+   * 删除房间
+   */
+  deleteRoom() {
+    wx.cloud.callFunction({
+      name: "aboutRoom",
+      data: {
+        request: "deleteRoom",
+        roomId: this.data.roomId
+      },
+      success: res => {
+        console.log(res)
+      },
+      fail: res => {
+        console.log(res)
+      }
+    })
+  },
+  /**
+   * 监听返回键
+   */
+  listenBack() {
+    let msg = "确定要离开吗？"
+    let isMaster = 0
+    if (wx.getStorageSync('openid') == this.data.master) {
+      isMaster = 1
+      msg = "房主离开后房间将被解散" + msg
+    }
+    if (isMaster == 1) {
+      this.deleteRoom()
+      wx.showToast({
+        title: '您已解散房间',
+        icon: "none"
+      })
+    }
+    else {
+      this.leaveRoom()
+      wx.showToast({
+        title: '您已离开房间',
+        icon: "none"
+      })
+    } 
+    wx.removeStorageSync('openid')
+    // wx.enableAlertBeforeUnload({
+    //   message: msg,
+    //   success: res => {
+    //     console.log(res)
 
+    //   },
+    //   fail: res => {
+    //     console.log(res)
+    //   }
+    // })
+  }
 })
